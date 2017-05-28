@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+
+	
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -12,7 +16,11 @@
     <title>Mortgage Options Provider</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+	
+	<c:set var = "bootstrap_path" scope = "session" value = "webjars/bootstrap/3.3.7-1"/>
+	<c:set var = "jquery_path" scope = "session" value = "webjars/jquery/3.2.1"/>
+	
+    <link rel='stylesheet' href='${bootstrap_path}/css/bootstrap.min.css'>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -75,9 +83,9 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="${jquery_path}/jquery.min.js"></script>
+	<script type="text/javascript" src="${bootstrap_path}/js/bootstrap.min.js"></script>
+	<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
