@@ -1,0 +1,37 @@
+apply plugin: 'java'
+apply plugin: 'war'
+
+repositories {
+  mavenCentral()
+}
+
+
+dependencies {
+  providedCompile 'javax.servlet:servlet-api:2.5'
+  compile group: 'junit', name: 'junit', version: '4.12'
+  compile group: 'javax.servlet', name: 'jstl', version:'1.2'
+  compile 'com.github.jsimone:webapp-runner:8.0.30.2'
+}
+
+// Heroku application deploy task
+task stage() {
+  dependsOn clean, war
+}
+
+tasks.stage.doLast() {
+  delete fileTree(dir: "build/distributions")
+  delete fileTree(dir: "build/assetCompile")
+  delete fileTree(dir: "build/distributions")
+  delete fileTree(dir: "build/libs", exclude: "*.war")
+}
+
+war.mustRunAfter clean
+
+task copyToLib(type: Copy) {
+  into "$buildDir/server"
+  from(configurations.compile) {
+    include "webapp-runner*"
+  }
+}
+
+stage.dependsOn(copyToLib)
