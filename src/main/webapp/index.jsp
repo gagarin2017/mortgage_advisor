@@ -1,10 +1,7 @@
 <!DOCTYPE html>
-
-	
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-
 <html lang="en">
-  <head>
+  <head>	
+	<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,7 +23,7 @@
     <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="http://getbootstrap.com/examples/cover/cover.css" rel="stylesheet">
+    <link href="css/btrp_cover.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -70,7 +67,7 @@
 
           <div class="mastfoot">
             <div class="inner">
-              <p>No responsibilities for false data. Created by #JayPee.</p>
+              <p>No responsibilities for false data. Created by #Yury</p>
             </div>
           </div>
 
