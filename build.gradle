@@ -1,3 +1,14 @@
+description ="""
+Mortgage Advisor Web Application was built using Gradle.
+
+Project name: ${project.name}
+
+This application is intended to help users choose the most profitable Mortgage option using different bank rates and other terms. \n
+This software can be used by existing mortgage owners as well as by the newbies to the whole mortgage fun world. :)
+\n
+\n
+Created by #Yury """
+
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'eclipse'
@@ -23,6 +34,8 @@ dependencies {
 
 // Heroku application deploy task
 task stage() {
+  group 'Heroku Deploy'
+  description 'The "stage" task (name is customizable) is run by Heroku engine, when application is being deployed'
   dependsOn clean, war
 }
 
@@ -36,6 +49,8 @@ tasks.stage.doLast() {
 war.mustRunAfter clean
 
 task copyToLib(type: Copy) {
+  group 'Heroku Deploy'
+  description 'The "copyToLib" task copying webapp-runner to the specific location which is referenced by the Procfile. That runner is used to actually run the application on Heroku.'
   into "$buildDir/server"
   from(configurations.compile) {
     include "webapp-runner*"
