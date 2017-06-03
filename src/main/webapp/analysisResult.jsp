@@ -61,7 +61,7 @@
 			<div class="row">
 
 				<div class="col-lg-10 col-md-10 col-sm-3 col-xs-10">
-					<p>Best Bank Of Ireland Rates</p>
+					<p>Best Bank Of Ireland Rates (BOI Branch)</p>
 					
 				</div>
 				<div class="col-lg-2 col-md-2 col-sm-3 col-xs-2" style="padding: 0px">
