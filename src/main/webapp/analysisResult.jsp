@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
   	<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+  	
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,22 +14,18 @@
     <title>Mortgage Adviser - Results</title>
 
     <!-- Bootstrap core CSS -->
-
 	<c:set var = "bootstrap_path" scope = "session" value = "webjars/bootstrap/3.3.7-1"/>
-	<c:set var = "jquery_path" scope = "session" value = "webjars/jquery/3.2.1"/>
+	<c:set var = "jquery_path" scope = "session" value = "js/jQuery/jquery-3.2.1.min.js"/>
 
     <link rel='stylesheet' href='${bootstrap_path}/css/bootstrap.min.css'>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="css/bootstrap/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/btrp_cover.css" rel="stylesheet">
-    <link href="http://getbootstrap.com/examples/starter-template/starter-template.css" rel="stylesheet">
+    <link href="css/bootstrap/starter-template.css" rel="stylesheet">
 
     <link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="css/best_rate_provider.css" rel="stylesheet">
-   
   </head>
 
   <body>
@@ -57,20 +54,62 @@
 	<div class="container-fluid" style="margin-left: 10px; margin-right: 10 px;">
 
 		<div class="starter-template">
-
+			
 			<div class="row">
-
 				<div class="col-lg-10 col-md-10 col-sm-3 col-xs-10">
 					<p>Best Bank Of Ireland Rates (BOI Branch)</p>
+					${BOI_bestrates}
 					
+					<div id="bestRateDivBOI">
+						<p>
+							Probably the best rate is: ${BOI_bestrate}
+							<input autofocus="true" type="text" name="bestRateBOI" value="3.7%" />
+							<a href="#">Payment Schedule</a>
+						</p>
+					</div>
 				</div>
+				
 				<div class="col-lg-2 col-md-2 col-sm-3 col-xs-2" style="padding: 0px">
-					
+					<div class="short-div">
+						<ul class="nav nav-pills nav-stacked">
+							<li role="presentation" class="active">
+								<a 	data-toggle="modal" href="#boiRatesModal">All BOI Rates</a>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 
+			<!-- BOI Modal -->
+			<div class="modal fade bs-example-modal-lg" id="boiRatesModal" 
+				tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title bg-primary" id="myModalLabel" style="text-align: center;">
+								BOI Rates
+							</h4>
+						</div>
 
+						<div class="modal-body">
+							<div id="bootstrapRadio" class="btn-group" data-toggle="buttons" />
+
+							<div id="mortgageTypes" class=""></div>
+							<br /> ${boiRates}
+							<div id="resultTable"></div>
+							
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 
 	</div>
@@ -79,13 +118,12 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-	<script type="text/javascript" src="${jquery_path}/jquery.min.js"></script>
+	<script type="text/javascript" src="${jquery_path}"></script>
 	<script type="text/javascript" src="${bootstrap_path}/js/bootstrap.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jQuery/jquery-3.2.1.min.js"><\/script>')</script>
+	<!--     IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/bootstrap/assets/ie10-viewport-bug-workaround.js"></script>
     <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-    <script src="js/boi.js"></script>
     </script>
   </body>
 </html>

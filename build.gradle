@@ -9,28 +9,88 @@ This software can be used by existing mortgage owners as well as by the newbies 
 \n
 Created by #Yury """
 
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0-M4'
+	}
+}
+
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'eclipse'
 apply plugin: 'eclipse-wtp'
+apply plugin: 'org.junit.platform.gradle.plugin'
 
 repositories {
   mavenCentral()
 }
 
+ext.servletApiVersion		= '2.5'
+ext.servletJstlVersion		= '1.2'
+ext.junit4Version			= '4.12'
+ext.hamcrestVersion			= '1.3'
+ext.webappRunnerVersion		= '8.0.30.2'
+ext.bootstrapVersion		= '3.3.7-1'
+ext.jQueryVersion			= '3.2.1'
+ext.jSoupVersion			= '1.10.2'
+
+
+ext.junitVintageVersion  	= '4.12.0-M4'
+ext.junitPlatformVersion 	= '1.0.0-M4'
+ext.junitJupiterVersion  	= '5.0.0-M4'
+ext.log4jVersion         	= '2.6.2'
 
 dependencies {
-  providedCompile 'javax.servlet:servlet-api:2.5'
-  compile group: 'junit', name: 'junit', version: '4.12'
-  compile group: 'javax.servlet', name: 'jstl', version:'1.2'
-  compile 'com.github.jsimone:webapp-runner:8.0.30.2'
-  // https://mvnrepository.com/artifact/org.webjars/bootstrap
-  compile group: 'org.webjars', name: 'bootstrap', version: '3.3.7-1'
-  compile 'org.webjars.npm:jquery:3.2.1'
+	providedCompile "javax.servlet:servlet-api:${servletApiVersion}"
+	compile group: "javax.servlet", name: "jstl", version:"${servletJstlVersion}"
+  
+  	// Heroku runner
+	compile "com.github.jsimone:webapp-runner:${webappRunnerVersion}"
+	
+	// https://mvnrepository.com/artifact/org.webjars/bootstrap
+	compile group: "org.webjars", name: "bootstrap", version: "${bootstrapVersion}"
+	
+	// https://mvnrepository.com/artifact/org.jsoup/jsoup
+	compile group: "org.jsoup", name: "jsoup", version: "${jSoupVersion}"
 
+	// JUnit Jupiter API and TestEngine implementation
+	testCompile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
+	testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
+	
+	// If you also want to support JUnit 3 and JUnit 4 tests
+	testCompile("junit:junit:${junit4Version}")
+	testRuntime("org.junit.vintage:junit-vintage-engine:${junitVintageVersion}")
 
-
+	testRuntime("org.apache.logging.log4j:log4j-core:${log4jVersion}")
+	testRuntime("org.apache.logging.log4j:log4j-jul:${log4jVersion}")
+	
+	// jUnit test runner
+	// https://mvnrepository.com/artifact/org.junit.platform/junit-platform-runner
+	compile group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.0.0-M4'
 }
+
+junitPlatform {
+	// platformVersion '1.0.0-M4'
+	filters {
+		engines {
+			// include 'junit-jupiter', 'junit-vintage'
+			// exclude 'custom-engine'
+		}
+		tags {
+			// include 'fast'
+			exclude 'slow'
+		}
+		// includeClassNamePattern '.*Test'
+	}
+	// enableStandardTestTask true
+	// reportsDir file('build/test-results/junit-platform') // this is the default
+	logManager 'org.apache.logging.log4j.jul.LogManager'
+}
+
+
 
 // Heroku application deploy task
 task stage() {
@@ -39,6 +99,7 @@ task stage() {
   dependsOn clean, war
 }
 
+// Heroku application deploy task
 tasks.stage.doLast() {
   delete fileTree(dir: "build/distributions")
   delete fileTree(dir: "build/assetCompile")
@@ -48,6 +109,7 @@ tasks.stage.doLast() {
 
 war.mustRunAfter clean
 
+// Heroku application deploy task
 task copyToLib(type: Copy) {
   group 'Heroku Deploy'
   description 'The "copyToLib" task copying webapp-runner to the specific location which is referenced by the Procfile. That runner is used to actually run the application on Heroku.'
