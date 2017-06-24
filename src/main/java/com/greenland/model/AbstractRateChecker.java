@@ -9,14 +9,14 @@ import org.jsoup.nodes.Element;
 public abstract class AbstractRateChecker implements RateChecker {
 	
 	private String url;
-	private String domElement;
+	private String rootDomElement;
 	private Element bankRatesHTMLTable;
 	
 	@Override
 	public void init() {
 		try {
 			final Document doc = Jsoup.connect(url).get();
-			bankRatesHTMLTable = doc.select(domElement).get(0);
+			bankRatesHTMLTable = doc.select(rootDomElement).get(0);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -35,12 +35,12 @@ public abstract class AbstractRateChecker implements RateChecker {
 		this.url = url;
 	}
 
-	protected String getDomElement() {
-		return domElement;
+	public String getRootDomElement() {
+		return rootDomElement;
 	}
 
-	protected void setDomElement(String domElement) {
-		this.domElement = domElement;
+	public void setRootDomElement(String rootDomElement) {
+		this.rootDomElement = rootDomElement;
 	}
 	
 	

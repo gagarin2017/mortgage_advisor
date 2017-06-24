@@ -6,10 +6,6 @@ public interface RateChecker {
 
 	Element getAllRatesHtmlTable();
 
-	Element getBestRatesTable();
-
 	void init();
-
-	RateObject getBestRateObject();
 	
 }

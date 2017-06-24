@@ -22,10 +22,11 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="css/bootstrap/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
+    <link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet">
+
     <!-- Custom styles for this template -->
     <link href="css/bootstrap/starter-template.css" rel="stylesheet">
 
-    <link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet">
   </head>
 
   <body>
@@ -74,42 +75,23 @@
 						<ul class="nav nav-pills nav-stacked">
 							<li role="presentation" class="active">
 								<a 	data-toggle="modal" href="#boiRatesModal">All BOI Rates</a>
+								<br />
+								<a 	data-toggle="modal" href="#aibRatesModal">All AIB Rates</a>
+								<br />
+								<a 	data-toggle="modal" href="#ulsterbankRatesModal">All Ulsterbank Rates</a>
+								<br />
+								<a 	data-toggle="modal" href="#kbcRatesModal">All KBC Rates</a>
 							</li>
 						</ul>
 					</div>
 				</div>
 			</div>
 
-			<!-- BOI Modal -->
-			<div class="modal fade bs-example-modal-lg" id="boiRatesModal" 
-				tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-
-				<div class="modal-dialog modal-lg" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-							<h4 class="modal-title bg-primary" id="myModalLabel" style="text-align: center;">
-								BOI Rates
-							</h4>
-						</div>
-
-						<div class="modal-body">
-							<div id="bootstrapRadio" class="btn-group" data-toggle="buttons" />
-
-							<div id="mortgageTypes" class=""></div>
-							<br /> ${boiRates}
-							<div id="resultTable"></div>
-							
-						</div>
-
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						</div>
-					</div>
-				</div>
-			</div>
+			<jsp:include page="bank_modals/boi_modal.jsp" />
+			<jsp:include page="bank_modals/aib_modal.jsp" />
+			<jsp:include page="bank_modals/ulsterbank_modal.jsp" />
+			<jsp:include page="bank_modals/kbc_modal.jsp" />
+			
 		</div>
 
 	</div>

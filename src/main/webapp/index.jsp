@@ -22,7 +22,7 @@
     <link href="css/bootstrap/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/btrp_cover.css" rel="stylesheet">
+    <link href="css/bootstrap/cover.css" rel="stylesheet">
   </head>
 
   <body>
