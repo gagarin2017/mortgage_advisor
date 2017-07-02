@@ -7,11 +7,11 @@
         <h4 class="modal-title" id="myModalLabel">BOI Rates</h4>
       </div>
       <div class="modal-body">
-        BOI Modal contents here
+        <jsp:useBean id="BOIRateChecker" class="com.greenland.model.BOIRateChecker" scope="session"/>
+        ${sessionScope[BOIRateChecker.allRatesSessionAttribute]}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

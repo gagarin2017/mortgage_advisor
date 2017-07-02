@@ -8,7 +8,8 @@ import org.jsoup.nodes.Element;
 
 public abstract class AbstractRateChecker implements RateChecker {
 	
-	private String url;
+	private static String allRatesSessionAttribute;
+	private static String url;
 	private String rootDomElement;
 	private Element bankRatesHTMLTable;
 	
@@ -27,7 +28,7 @@ public abstract class AbstractRateChecker implements RateChecker {
 		return bankRatesHTMLTable;
 	}
 
-	protected String getUrl() {
+	public String getUrl() {
 		return url;
 	}
 
@@ -41,6 +42,14 @@ public abstract class AbstractRateChecker implements RateChecker {
 
 	public void setRootDomElement(String rootDomElement) {
 		this.rootDomElement = rootDomElement;
+	}
+
+	public String getAllRatesSessionAttribute() {
+		return allRatesSessionAttribute;
+	}
+
+	protected static void setAllRatesSessionAttribute(String allRatesSessionAttribute) {
+		AbstractRateChecker.allRatesSessionAttribute = allRatesSessionAttribute;
 	}
 	
 	
