@@ -10,6 +10,7 @@ public class BOIRateChecker extends AbstractRateChecker {
 		setAllRatesSessionAttribute(ALL_RATES_SESSION_ATT);
 		setUrl(BOI_RATES_TABLE_URL);;
 		setRootDomElement(RATES_TABLE_ELEMENT_STRING);
+		setAllRatesTableName("myTable");
 	}
 
 }

@@ -106,6 +106,7 @@
 	<!--     IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/bootstrap/assets/ie10-viewport-bug-workaround.js"></script>
     <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script src="js/mortgage_advisor.js"></script>
     </script>
   </body>
 </html>
