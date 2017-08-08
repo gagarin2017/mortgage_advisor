@@ -1,18 +1,14 @@
 package com.greenland.web;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.greenland.model.BOIRateChecker;
-import com.greenland.model.RateChecker;
+import com.greenland.util.services.RateCheckerService;
 
 public class MainAnalyzerServlet extends HttpServlet {
 
@@ -31,16 +27,12 @@ public class MainAnalyzerServlet extends HttpServlet {
 	public void processTheRequest(final HttpServletRequest request, final HttpServletResponse response)
 			throws IOException, ServletException {
 		
-		final HttpSession session = request.getSession();
-		
-		final List<RateChecker> rateCheckers = new ArrayList<RateChecker>();
-		
-		rateCheckers.add(new BOIRateChecker());
-		
-		for (final RateChecker rateChecker : rateCheckers) {
-			rateChecker.init();
-			session.setAttribute(rateChecker.getAllRatesSessionAttribute(), rateChecker.getAllRatesHtmlTable());
-			
+		try {
+			RateCheckerService.updateSessionWithRateCheckerData(request.getSession());
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
 		}
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/analysisResult.jsp");

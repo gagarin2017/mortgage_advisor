@@ -18,6 +18,8 @@ import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import com.google.common.base.Strings;
+import com.greenland.util.RateCheckers;
+import com.greenland.util.services.RateCheckerService;
 
 /**
  * Test for BOIRateCheckerTest.
@@ -35,7 +37,7 @@ public class BOIRateCheckerTest {
 	@BeforeAll
 	@DisplayName("Setting up the test data.")
 	static void initAll() {
-
+//		RateCheckerService.init(RateCheckers.BOI);
 		boiRateChecker = new BOIRateChecker();
 		boiRateChecker.init();
 

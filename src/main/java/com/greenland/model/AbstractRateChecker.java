@@ -9,11 +9,15 @@ import org.jsoup.nodes.Element;
 public abstract class AbstractRateChecker implements RateChecker {
 	
 	private static final String DATA_TABLE_CLASS_NAME = "display";
-	private static String allRatesSessionAttribute;
-	private static String url;
+	
+	private String allRatesTableSessionAttribute;
+	private String urlSessionAttribute;
+	private String bestRateSessionAttribute;
+	private String url;
 	private String rootDomElement;
 	private Element bankRatesHTMLTable;
 	private String allRatesTableName;
+	private RateObject bestRateObject;
 	
 	@Override
 	public void init() {
@@ -28,9 +32,11 @@ public abstract class AbstractRateChecker implements RateChecker {
 	
 	/**
 	 * This method adds DataModel flavor to the resulting table
-	 * @param bankRatesHTMLTable2
+	 *
+	 * @param bankRatesHTMLTable - table which need to have data table parameters
+	 * @param tableDOM_id - result table id
 	 */
-	private void addDataTableFlavor(final Element bankRatesHTMLTable, final String tableDOM_id) {
+	void addDataTableFlavor(final Element bankRatesHTMLTable, final String tableDOM_id) {
 		bankRatesHTMLTable.removeAttr("class");
 		bankRatesHTMLTable.addClass(DATA_TABLE_CLASS_NAME);
 		bankRatesHTMLTable.attr("cellspacing","0");
@@ -54,24 +60,48 @@ public abstract class AbstractRateChecker implements RateChecker {
 		return rootDomElement;
 	}
 
-	public void setRootDomElement(String rootDomElement) {
+	public void setRootDomElement(final String rootDomElement) {
 		this.rootDomElement = rootDomElement;
 	}
 
-	public String getAllRatesSessionAttribute() {
-		return allRatesSessionAttribute;
+	public String getAllRatesTableSessionAttribute() {
+		return allRatesTableSessionAttribute;
 	}
 
-	protected static void setAllRatesSessionAttribute(String allRatesSessionAttribute) {
-		AbstractRateChecker.allRatesSessionAttribute = allRatesSessionAttribute;
+	protected void setAllRatesTableSessionAttribute(final String allRatesTableSessionAttribute) {
+		this.allRatesTableSessionAttribute = allRatesTableSessionAttribute;
 	}
 
 	protected String getAllRatesTableName() {
 		return allRatesTableName;
 	}
 
-	protected void setAllRatesTableName(String allRatesTableName) {
+	protected void setAllRatesTableName(final String allRatesTableName) {
 		this.allRatesTableName = allRatesTableName;
+	}
+
+	public String getUrlSessionAttribute() {
+		return urlSessionAttribute;
+	}
+
+	protected void setUrlSessionAttribute(final String urlSessionAttribute) {
+		this.urlSessionAttribute = urlSessionAttribute;
+	}
+
+	public String getBestRateSessionAttribute() {
+		return bestRateSessionAttribute;
+	}
+
+	protected void setBestRateSessionAttribute(final String bestRateSessionAttribute) {
+		this.bestRateSessionAttribute = bestRateSessionAttribute;
+	}
+
+	public RateObject getBestRateObject() {
+		return bestRateObject;
+	}
+
+	protected void setBestRateObject(final RateObject bestRateObject) {
+		this.bestRateObject = bestRateObject;
 	}
 
 	

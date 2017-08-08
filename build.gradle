@@ -77,6 +77,16 @@ dependencies {
 	// https://mvnrepository.com/artifact/com.google.guava/guava-base
 	compile group: 'com.google.guava', name: 'guava-base', version: 'r03'
 
+	// https://mvnrepository.com/artifact/org.jmockit/jmockit
+	testCompile group: 'org.jmockit', name: 'jmockit', version: '1.33'
+
+	// https://mvnrepository.com/artifact/javax/javaee-api
+	compile group: 'javax', name: 'javaee-api', version: '7.0'
+	
+	// https://mvnrepository.com/artifact/com.google.guava/guava
+	compile group: 'com.google.guava', name: 'guava', version: '23.0-rc1'
+	
+
 }
 
 junitPlatform {
