@@ -84,6 +84,11 @@ public abstract class AbstractRateChecker implements RateChecker {
 		return urlSessionAttribute;
 	}
 
+	/**
+	 * Setter for the session attribute 
+	 * 
+	 * @param urlSessionAttribute - attribute name
+	 */
 	protected void setUrlSessionAttribute(final String urlSessionAttribute) {
 		this.urlSessionAttribute = urlSessionAttribute;
 	}

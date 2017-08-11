@@ -22,7 +22,7 @@ public abstract class RateCheckerService {
 	/**
 	 * {@link RateChecker} class type - {@link RateChecker} service relationship Map.
 	 */
-	private static Map<Class<? extends RateChecker>, RateCheckerService> rateCheckerServicesMap = 
+	/*private*/ static Map<Class<? extends RateChecker>, RateCheckerService> rateCheckerServicesMap = 
 			ImmutableMap.of(RateCheckers.BOI.getRateCheckerClassType(),RateCheckers.BOI.getRelevantService());
 	
 	/**
@@ -40,7 +40,7 @@ public abstract class RateCheckerService {
 			rateCheckerInstance.init();
 			session.setAttribute(rateCheckerInstance.getAllRatesTableSessionAttribute(), rateCheckerInstance.getAllRatesHtmlTable());
 			session.setAttribute(rateCheckerInstance.getUrlSessionAttribute(), rateCheckerInstance.getUrl());
-			session.setAttribute(rateCheckerInstance.getBestRateSessionAttribute(), rateCheckerInstance.getBestRateObject());
+			session.setAttribute(rateCheckerInstance.getBestRateSessionAttribute(), getBestRateObject(rateCheckerInstance.getAllRatesHtmlTable(),rateCheckerInstance.getClass()));
 		}
 	}
 	
@@ -62,6 +62,12 @@ public abstract class RateCheckerService {
 		return rateObject;
 	}
 
+	/**
+	 * Enforcing child class to implement this method
+	 * 
+	 * @param allRatesHtmlTable - table to be filtered in order to find the best Rate
+	 * @return RateObject - the best Rate found in allRatesHtmlTable
+	 */
 	abstract RateObject getBestRateObject(Element allRatesHtmlTable);
 
 }
